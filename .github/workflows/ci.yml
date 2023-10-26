@@ -50,7 +50,7 @@ jobs:
           mysql password: ${{ secrets.DATABASE_PW }}
 
       - name: Make application-test.properties
-        run: }
+        run: |
           cd ./src/test/resources
           touch ./application.properties
           echo "${{ secrets.PROPERTIES_TEST }}" > ./application.properties
