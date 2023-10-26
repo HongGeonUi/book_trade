@@ -49,7 +49,7 @@ jobs:
           mysql user: ${{ secrets.DATABASE_USER }}
           mysql password: ${{ secrets.DATABASE_PW }}
 
-      - name: Make application-test.properties
+      - name: Make application-test.yml
         run: |
           cd ./src/test/resources
           touch ./application.properties
