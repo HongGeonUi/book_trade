@@ -1,4 +1,4 @@
-package presentation.member;
+package com.example.book_trade.member;
 
 import com.example.book_trade.domain.member.Member;
 import com.example.book_trade.domain.member.Sex;
