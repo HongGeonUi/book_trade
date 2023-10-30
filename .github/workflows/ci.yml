@@ -39,9 +39,11 @@ jobs:
         with:
           host port: 3306
           container port: 3306
+          character set server: 'utf8'
           mysql database: ${{ secrets.DATABASE_NAME }}
           mysql user: ${{ secrets.DATABASE_USER }}
           mysql password: ${{ secrets.DATABASE_PW }}
+          mysql root password: ${{ secrets.DATABASE_PW }}
 
       - name: Make application-test.yml
         run: |
