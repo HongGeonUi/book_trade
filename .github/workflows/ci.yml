@@ -35,13 +35,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Start MySQL for test
-        uses: mirrormutth/mysql-action@v1.1
-        with:
-          host port: 3306
-          container port: 3306
-          mysql database: ${{ secrets.DATABASE_NAME }}
-          mysql user: ${{ secrets.DATABASE_USER }}
-          mysql password: ${{ secrets.DATABASE_PW }}
+        uses: mirromutth/mysql-action@v1.1
 
       - name: Make application-test.yml
         run: |
