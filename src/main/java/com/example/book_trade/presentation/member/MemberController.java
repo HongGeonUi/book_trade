@@ -40,7 +40,7 @@ public class MemberController {
                 .build();
     }
 
-    @GetMapping("/api/member/{id")
+    @GetMapping("/api/member/{id}")
     public ResponseEntity<?> getMemberById(@PathVariable Long id) {
         return ResponseEntity
                 .status(HttpStatus.OK)

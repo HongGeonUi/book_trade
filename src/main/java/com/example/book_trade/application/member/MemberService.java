@@ -6,8 +6,6 @@ import com.example.book_trade.domain.member.Sex;
 import com.example.book_trade.domain.member.repository.MemberRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,14 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
     public void signup(String email, String password, String name, Sex sex) {
         isValidationEmail(email);
         memberRepository.save(Member.builder()
                 .email(email)
-                .password(passwordEncoder.encode(password))
+                .password(password)
                 .name(name)
                 .sex(sex)
                 .role(RoleType.COMMON)
