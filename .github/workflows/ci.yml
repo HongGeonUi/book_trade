@@ -37,7 +37,7 @@ jobs:
       - name: Start MySQL for test
         uses: samin/mysql-action@v1.3
         with:
-          host port: 3306
+          host port: 8080
           container port: 3306
           character set server: 'utf8'
           mysql database: ${{ secrets.DATABASE_NAME }}
