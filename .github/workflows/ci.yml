@@ -37,8 +37,8 @@ jobs:
       - name: Start MySQL for test
         uses: samin/mysql-action@v1.3
         with:
-          host port: 3305
-          container port: 3305
+          host port: 3306
+          container port: 3306
           mysql database: ${{ secrets.DATABASE_NAME }}
           mysql user: ${{ secrets.DATABASE_USER }}
           mysql password: ${{ secrets.DATABASE_PW }}
@@ -53,6 +53,9 @@ jobs:
 
       - name: Grant Execute Permission For Gradlew
         run: chmod +x gradlew
+
+      - name: Build With Gradle
+        run: ./gradlew build -x test
 
       - name: Build with Test
         run: ./gradlew test
