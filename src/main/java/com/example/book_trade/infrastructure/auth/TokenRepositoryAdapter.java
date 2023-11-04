@@ -1,21 +1,23 @@
 package com.example.book_trade.infrastructure.auth;
 
-import com.example.book_trade.domain.auth.repository.RefreshTokenRepository;
+import com.example.book_trade.domain.auth.repository.TokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
-public class RefreshTokenRepositoryAdapter implements RefreshTokenRepository {
+public class TokenRepositoryAdapter implements TokenRepository {
 
-    private final RefreshTokenRedisRepository refreshTokenRedisRepository;
+    private final TokenRedisRepository refreshTokenRedisRepository;
     @Override
     public void setValue(Long key, String value) {
         refreshTokenRedisRepository.setValues(key,value);
     }
 
     @Override
-    public String getValue(Long key) {
+    public Optional<String> getValue(Long key) {
         return refreshTokenRedisRepository.getValues(key);
     }
 

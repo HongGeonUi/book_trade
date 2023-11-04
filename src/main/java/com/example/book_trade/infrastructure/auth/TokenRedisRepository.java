@@ -5,11 +5,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @Component
 @RequiredArgsConstructor
-public class RefreshTokenRedisRepository {
+public class TokenRedisRepository {
 
     private final RedisTemplate<String, String> redisTemplate;
 
@@ -19,8 +20,8 @@ public class RefreshTokenRedisRepository {
         redisTemplate.expire(String.valueOf(key), 60L, TimeUnit.MINUTES);
     }
 
-    public String getValues(Long key) {
-        return redisTemplate.opsForValue().get(String.valueOf(key));
+    public Optional<String> getValues(Long key) {
+        return Optional.ofNullable(redisTemplate.opsForValue().get(String.valueOf(key)));
     }
 
     public void deleteValues(Long key) {
