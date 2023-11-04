@@ -1,8 +1,10 @@
 package com.example.book_trade.application.member;
 
 import com.example.book_trade.domain.member.Member;
+import com.example.book_trade.domain.member.PasswordManager;
 import com.example.book_trade.domain.member.Sex;
 import com.example.book_trade.domain.member.repository.MemberRepository;
+import com.example.book_trade.presentation.member.dto.SignupRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,21 +19,24 @@ public class MemberServiceTest {
 
     private MemberRepository memberRepository;
     private MemberService memberService;
+    private PasswordManager passwordManager;
 
     @BeforeEach
     void setUp() {
         memberRepository = Mockito.mock(MemberRepository.class);
-        memberService = new MemberService(memberRepository);
+        passwordManager = Mockito.mock(PasswordManager.class);
+        memberService = new MemberService(memberRepository, passwordManager);
     }
 
     @Test
     @DisplayName("signup Test")
     void testSignup() {
         //given
-        when(memberRepository.existsByEmail("keaam12@gmail.com")).thenReturn(false);
+        SignupRequest req = new SignupRequest("keaam12@gmail.com", "aaaAAA111!!!", "홍건의", Sex.MAN);
+        when(memberRepository.existsByEmail(req.email())).thenReturn(false);
 
         //when
-        assertDoesNotThrow(() -> memberService.signup("keaam12@gmail.com", "aaaAAA111!!!", "홍건의", Sex.MAN));
+        assertDoesNotThrow(() -> memberService.signup(req));
 
         //then
         Mockito.verify(memberRepository, Mockito.times(1)).save(Mockito.any());
@@ -41,12 +46,13 @@ public class MemberServiceTest {
     @DisplayName("signup Test When emailExists")
     void testSignupExistingEmail() {
         //given
-        when(memberRepository.existsByEmail("keaam12@gmail.com")).thenReturn(true);
+        SignupRequest req = new SignupRequest("keaam12@gmail.com", "aaaAAA111!!!", "홍건의", Sex.WOMAN);
+        when(memberRepository.existsByEmail(req.email())).thenReturn(true);
 
         //when
-        assertThrows(RuntimeException.class, () -> memberService.signup("keaam12@gmail.com", "bbbBBB222@@@", "홍길동", Sex.WOMAN));
+        assertThrows(RuntimeException.class, () -> memberService.signup(req));
 
-        //when
+        //then
         Mockito.verify(memberRepository, Mockito.never()).save(Mockito.any());
     }
 

@@ -1,9 +1,11 @@
 package com.example.book_trade.application.member;
 
 import com.example.book_trade.domain.member.Member;
+import com.example.book_trade.domain.member.PasswordManager;
 import com.example.book_trade.domain.member.RoleType;
 import com.example.book_trade.domain.member.Sex;
 import com.example.book_trade.domain.member.repository.MemberRepository;
+import com.example.book_trade.presentation.member.dto.SignupRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,18 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final PasswordManager passwordManager;
 
     @Transactional
-    public void signup(String email, String password, String name, Sex sex) {
-        isValidationEmail(email);
-        memberRepository.save(Member.builder()
-                .email(email)
-                .password(password)
-                .name(name)
-                .sex(sex)
-                .role(RoleType.COMMON)
-                .build());
+    public void signup(SignupRequest req) {
+        isValidationEmail(req.email());
 
+        Member member = req.toEntity();
+
+        member.setPasswordByEncryption(passwordManager.encryptPassword(req.password()));
+        memberRepository.save(member);
     }
 
     @Transactional
