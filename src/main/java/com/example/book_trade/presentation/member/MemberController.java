@@ -2,6 +2,7 @@ package com.example.book_trade.presentation.member;
 
 import com.example.book_trade.application.member.MemberService;
 import com.example.book_trade.presentation.member.dto.MemberDTO;
+import com.example.book_trade.presentation.member.dto.SignupRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ public class MemberController {
 
     @Operation(summary = "멤버 등록 api", description = "멤버 정보를 등록한다")
     @PostMapping("/api/member")
-    public ResponseEntity<?> signup(@Valid @RequestBody MemberDTO req) {
-        memberService.signup(req.getEmail(), req.getPassword(), req.getName(), req.getSex());
+    public ResponseEntity<?> signup(@Valid @RequestBody SignupRequest req) {
+        memberService.signup(req);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .build();

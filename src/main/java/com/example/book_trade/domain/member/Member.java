@@ -44,4 +44,8 @@ public class Member extends BaseEntity {
         this.name = name;
         this.sex = sex;
     }
+
+    public void setPasswordByEncryption(String passwordByEncryption) {
+        this.password = passwordByEncryption;
+    }
 }

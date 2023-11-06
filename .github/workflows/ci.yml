@@ -35,14 +35,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Start MySQL for test
-        uses: mirromutth/mysql-action@v1.1
-        with:
-          host port: 3306
-          container port: 3306
-          mysql database: ${{ secrets.DATABASE_NAME }}
-          mysql user: ${{ secrets.DATABASE_USER }}
-          mysql password: ${{ secrets.DATABASE_PW }}
+      - name: Make docker-compose.yml
+        run: |
+          touch .docker-compose.yml
+          echo ${{ secrets.DOCKER_COMPOSE }} | base64 -d > ./docker-compose.yml
+          cat ./docker-compose.yml
+        shell: bash
+
+      - name: Start docker-compose.yml
+        run: docker-compose up -d
+        working-directory: ${{ github.workspace }}
 
       - name: Make application-test.yml
         run: |
