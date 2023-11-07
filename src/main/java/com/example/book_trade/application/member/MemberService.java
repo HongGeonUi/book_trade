@@ -2,9 +2,8 @@ package com.example.book_trade.application.member;
 
 import com.example.book_trade.domain.member.Member;
 import com.example.book_trade.domain.member.PasswordManager;
-import com.example.book_trade.domain.member.RoleType;
 import com.example.book_trade.domain.member.Sex;
-import com.example.book_trade.domain.member.repository.MemberRepository;
+import com.example.book_trade.domain.member.MemberRepository;
 import com.example.book_trade.presentation.member.dto.SignupRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

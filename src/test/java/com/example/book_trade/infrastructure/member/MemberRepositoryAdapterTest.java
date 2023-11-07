@@ -2,7 +2,7 @@ package com.example.book_trade.infrastructure.member;
 
 import com.example.book_trade.domain.member.Member;
 import com.example.book_trade.domain.member.Sex;
-import com.example.book_trade.domain.member.repository.MemberRepository;
+import com.example.book_trade.domain.member.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ public class MemberRepositoryAdapterTest {
 
     @Test
     @DisplayName("save test")
-    void testSave() {
+    void saveTest() {
         //given
         Member memberToSave = Member.builder()
                 .id(1L)
@@ -52,7 +52,7 @@ public class MemberRepositoryAdapterTest {
 
     @Test
     @DisplayName("findByEmail test")
-    void testFindByEmail() {
+    void findByEmailTest() {
         //given
         String email = "keaam12@gmail.com";
         Member member = Member.builder()
@@ -74,7 +74,7 @@ public class MemberRepositoryAdapterTest {
 
     @Test
     @DisplayName("existsByEmail test")
-    void testExistsByEmail() {
+    void existsByEmailTest() {
         //given
         String email = "keaam12@gmail.com";
         Mockito.when(memberJpaRepository.existsByEmail(email)).thenReturn(true);
@@ -88,7 +88,7 @@ public class MemberRepositoryAdapterTest {
 
     @Test
     @DisplayName("deleteById test")
-    void testDeleteById() {
+    void deleteByIdTest() {
         //given
         Long memberId = 1L;
         Mockito.doNothing().when(memberJpaRepository).deleteById(memberId);
@@ -99,7 +99,7 @@ public class MemberRepositoryAdapterTest {
 
     @Test
     @DisplayName("findById test")
-    void testFindById() {
+    void findByIdTest() {
         //given
         Long memberId = 1L;
         Member expectedMember = Member.builder()

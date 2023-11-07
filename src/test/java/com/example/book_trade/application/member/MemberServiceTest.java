@@ -3,7 +3,7 @@ package com.example.book_trade.application.member;
 import com.example.book_trade.domain.member.Member;
 import com.example.book_trade.domain.member.PasswordManager;
 import com.example.book_trade.domain.member.Sex;
-import com.example.book_trade.domain.member.repository.MemberRepository;
+import com.example.book_trade.domain.member.MemberRepository;
 import com.example.book_trade.presentation.member.dto.SignupRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,12 +19,11 @@ public class MemberServiceTest {
 
     private MemberRepository memberRepository;
     private MemberService memberService;
-    private PasswordManager passwordManager;
 
     @BeforeEach
     void setUp() {
         memberRepository = Mockito.mock(MemberRepository.class);
-        passwordManager = Mockito.mock(PasswordManager.class);
+        PasswordManager passwordManager = Mockito.mock(PasswordManager.class);
         memberService = new MemberService(memberRepository, passwordManager);
     }
 

@@ -1,6 +1,6 @@
 package com.example.book_trade.application.auth;
 
-import com.example.book_trade.domain.member.repository.MemberRepository;
+import com.example.book_trade.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

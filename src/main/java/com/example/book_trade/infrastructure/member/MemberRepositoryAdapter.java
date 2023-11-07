@@ -1,7 +1,7 @@
 package com.example.book_trade.infrastructure.member;
 
 import com.example.book_trade.domain.member.Member;
-import com.example.book_trade.domain.member.repository.MemberRepository;
+import com.example.book_trade.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

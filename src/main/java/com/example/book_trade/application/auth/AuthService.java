@@ -3,7 +3,7 @@ package com.example.book_trade.application.auth;
 import com.example.book_trade.domain.auth.repository.TokenRepository;
 import com.example.book_trade.domain.member.Member;
 import com.example.book_trade.domain.member.PasswordManager;
-import com.example.book_trade.domain.member.repository.MemberRepository;
+import com.example.book_trade.domain.member.MemberRepository;
 import com.example.book_trade.infrastructure.auth.JwtAuthenticationManager;
 import com.example.book_trade.infrastructure.auth.JwtTokenProvider;
 import com.example.book_trade.presentation.auth.dto.*;
@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private static int EXPIRATION_PERIOD = 7;
+    private final static int EXPIRATION_PERIOD = 7;
 
     private final MemberRepository memberRepository;
     private final TokenRepository tokenRepository;

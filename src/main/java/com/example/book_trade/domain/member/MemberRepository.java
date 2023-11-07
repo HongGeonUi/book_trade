@@ -1,6 +1,4 @@
-package com.example.book_trade.domain.member.repository;
-
-import com.example.book_trade.domain.member.Member;
+package com.example.book_trade.domain.member;
 
 import java.util.Optional;
 
